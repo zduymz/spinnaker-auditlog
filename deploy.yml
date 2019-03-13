@@ -34,6 +34,11 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        env:
+          - name: FLUENTD_SERVER
+            value: fluent-1.apixio.com
+          - name: FLUENTD_TAG_PREFIX
+            value: production
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

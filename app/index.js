@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const logger = require('fluent-logger').createFluentSender('staging', {
-  host: '10.1.16.232',
+const logger = require('fluent-logger').createFluentSender(process.env.FLUENTD_TAG_PREFIX, {
+  host: process.env.FLUENTD_SERVER,
   port: 24224,
   timeout: 3.0,
   reconnectInterval: 30000 // 30 seconds
@@ -32,9 +32,8 @@ function log(message, application, pipeline, severity = 'INFO') {
   }
   //var entry = log.entry(metadata, jsonPayload);
 
-  // log.write(entry);
   logger.emit('spinnaker', jsonPayload)
-  console.log(jsonPayload);
+  // console.log(jsonPayload);
 }
 
 /**
