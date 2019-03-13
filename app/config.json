@@ -1,0 +1,8 @@
+{
+  "USERNAME": "spinnaker",
+  "PASSWORD": "spinnaker@123",
+  "TIMEZONE": "America/Los_Angeles",
+  "CREDENTIALS_PATH": "SOME_CREDENTIALS_PATH",
+  "AUDIT_LOG_NAME": "SOME_AUDIT_LOG_NAME"
+}
+

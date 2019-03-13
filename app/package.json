@@ -1,0 +1,16 @@
+{
+  "name": "spinnakerauditlog",
+  "version": "0.6.9",
+  "description": "REST API for Spinnaker Orca, write logs to FluentD and ship to Graylog then",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kenvin.md@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fluent-logger": "^3.3.1",
+    "moment-timezone": "^0.5.23"
+  }
+}

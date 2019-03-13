@@ -1,0 +1,62 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: null
+  generation: 1
+  labels:
+    run: spin-auditlog
+  name: spin-auditlog
+  selfLink: /apis/extensions/v1beta1/namespaces/spinnaker/deployments/spin-auditlog
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: spin-auditlog
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: spin-auditlog
+    spec:
+      containers:
+      - image: 088921319999.dkr.ecr.us-west-2.amazonaws.com/spin-auditlog:latest
+        imagePullPolicy: Always
+        name: spin-auditlog
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: spin-auditlog
+  name: spin-auditlog
+  selfLink: /api/v1/namespaces/spinnaker/services/spin-auditlog
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: spin-auditlog
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
